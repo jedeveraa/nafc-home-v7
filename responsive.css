@@ -1,0 +1,295 @@
+/* =========================================================
+   NAFC Home v7 – below the 1440 artboard
+   Loaded after styles.css. Nothing here applies at 1440 or wider
+   (except hiding the menu button, which isn't drawn there anyway),
+   so the verified 1440 render is untouched. Breakpoints:
+     ≤1439  fluid desktop (same layout, container shrinks)
+     ≤1279  header collapses into a menu panel
+     ≤1023  tablet: two-column sections stack
+     ≤767   mobile: card rows stack
+   ========================================================= */
+
+@media (min-width: 1280px) {
+  .menu-toggle { display: none; }
+}
+
+@media (max-width: 1439.98px) {
+  :root { --gutter: clamp(20px, 4.31vw, 62px); }
+  .wrap { width: calc(100% - 2 * var(--gutter)); }
+  .h2 { font-size: clamp(32px, 3.75vw, 54px); line-height: 1.167; }
+
+  /* header: nav and buttons keep their distance from the right edge */
+  .main-nav { left: auto; right: 398px; }
+  .hbtn--donate { left: auto; right: 154.24px; }
+  .hbtn--find { left: auto; right: -5px; }
+
+  /* hero: text and photo share the row */
+  .hero, .hero .wrap { height: auto; }
+  .hero .wrap { display: flex; align-items: flex-start; gap: clamp(32px, 3.5vw, 50px); padding-bottom: 64px; }
+  .hero__text { flex: 0 1 616px; min-width: 0; padding-bottom: 40px; }
+  .hero__title { width: auto; max-width: 603px; font-size: clamp(40px, 4.86vw, 70px); line-height: 1.172; }
+  .hero__lead { width: auto; }
+  .hero__photo { position: relative; left: auto; top: auto; flex: 0 1 650px; min-width: 0; height: auto; aspect-ratio: 650 / 647; margin-top: 44px; }
+  .hero__photo img { left: 0; width: 100%; height: 100%; object-fit: cover; object-position: 55.7% 50%; transform: none; }
+
+  /* finder: the card narrows with its column */
+  .finder { width: 100%; max-width: 614px; }
+  .finder__label { white-space: normal; }
+
+  .alt { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 23px; height: auto; white-space: normal; }
+  .alt a { position: static; }
+
+  /* our impact: cards flow instead of fixed boxes */
+  .impact { height: auto; padding-bottom: 54px; }
+  .impact__title { width: auto; }
+  .impact__cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .icard { height: auto; min-height: 403px; padding-bottom: 24px; }
+  .icard__head { position: relative; width: auto; height: auto; min-height: 154px; padding: 33px 18px 22px 19px; }
+  .icard--3 .icard__head { padding-top: 35px; }
+  .icard__title, .icard__text, .icard--3 .icard__title { position: static; width: auto; }
+  .icard__text { margin: 12px 0 0 -1px; }
+  .icard__list, .icard--3 .icard__list { position: static; margin: 29px 14.5px 0 15px; }
+  .icard__list li { width: auto; height: auto; min-height: 51.214px; padding: 0 30px 16px 0; }
+  .icard__list a { width: auto; }
+  .icard__list .i-arrow-ur { left: auto; right: 0.5px; }
+  .icard__list li::after { top: auto; bottom: 15.5px; width: calc(100% + 0.5px); }
+
+  /* mission + numbers */
+  .mission, .mission .wrap { height: auto; }
+  .mission .wrap { padding-bottom: 29px; }
+  .mission__bg { object-position: 80% 50%; }
+  .mission__title { width: auto; max-width: 563px; }
+  .mission__text { width: auto; max-width: min(535px, 46%); }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 32px;
+    width: 100%;
+    height: auto;
+    min-height: 177px;
+    padding: 35px 32px 30px 56px;
+  }
+  .stat { position: static; width: auto; }
+  .stat dt { font-size: clamp(40px, 4.44vw, 64px); }
+
+  /* donate */
+  .donate, .donate .wrap { height: auto; }
+  /* photo keeps XD's 54px gap from the band above and centers on the text */
+  .donate .wrap { display: flex; align-items: center; gap: 40px; padding: 54px 0 64px; }
+  .donate__text { flex: 1 1 0; min-width: 0; max-width: 682px; padding-top: 0; padding-left: clamp(0px, 3.06vw, 44px); }
+  .donate__title, .donate__lead { width: auto; max-width: 580px; }
+  .donate__photo { position: relative; left: auto; top: auto; flex: 1 1 0; max-width: 590px; min-width: 0; height: auto; aspect-ratio: 590 / 463; }
+
+  /* resource library */
+  .resources, .resources .wrap { height: auto; }
+  .resources .wrap { padding-bottom: 80px; }
+  .resources__title { width: auto; max-width: calc(100% - 240px); }
+  .resources__cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .rcard { height: auto; min-height: 463px; padding: 21px 20px 37px; }
+  .rcard__media, .rcard__tags, .rcard__title { position: relative; left: auto; top: auto; }
+  .rcard__media { width: 100%; height: auto; aspect-ratio: 388 / 265; }
+  .rcard__img, .rcard__img--1, .rcard__img--2, .rcard__img--3 { width: 100%; height: 100%; object-fit: cover; transform: none; }
+  .rcard__tags { margin-top: 23px; flex-wrap: wrap; row-gap: 8px; }
+  .rcard__title { width: auto; margin-top: 17px; }
+
+  /* partners */
+  .partners, .partners .wrap { height: auto; }
+  .partners { padding-bottom: 50px; }
+  .partners__title { width: auto; margin-left: 0; }
+  .partners__all { position: static; justify-content: center; margin-top: 18px; }
+  .logos { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 25px; }
+  .logos li { position: static; flex: 0 1 auto; min-width: 0; height: auto; }
+  .logos img { height: auto; }
+  .logos__fade { top: auto; bottom: -8px; }
+  .logos__fade--right { left: auto; right: 0; }
+
+  /* footer */
+  .site-footer, .site-footer .wrap { height: auto; }
+  .site-footer .wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 296fr) minmax(0, 328fr) minmax(0, 371fr) minmax(0, 321fr);
+    padding: 40px 0 31px;
+  }
+  .site-footer__logo { position: static; }
+  .fcol { position: static; padding-top: 5px; }
+  .fcol--contact dl { display: flex; flex-direction: column; gap: 30px; margin-top: 33px; }
+  .contact, .contact--email, .contact--phone, .contact--address { position: relative; top: auto; left: auto; width: auto; min-height: 43px; margin-left: 4px; }
+  .contact--address dd { width: auto; max-width: 242px; }
+  .social { position: static; display: flex; flex-wrap: wrap; gap: 12px 16px; margin: 27px 0 0 4px; }
+  .social li { position: relative; left: auto; width: 39px; height: 39px; flex: none; }
+  .social--ig, .social--fl { width: 38px; }
+  .taxid { position: static; width: auto; max-width: 292px; margin: 34px 0 0 4px; padding-inline: 12px; }
+  .site-footer__bottom { position: relative; top: auto; width: auto; grid-column: 1 / -1; margin-top: 40px; padding-top: 30px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 32px; }
+  .site-footer__bottom::before { width: 100%; }
+  .copyright, .credits { position: static; left: auto; }
+}
+
+/* ---------- menu panel ---------- */
+@media (max-width: 1279.98px) {
+  .site-header, .site-header .wrap { height: 96px; }
+  .site-header::after { top: 95px; }
+  .site-header .wrap { display: flex; align-items: center; justify-content: space-between; }
+  .brand { position: static; }
+  .brand img { width: 160px; height: auto; }
+
+  .menu-toggle {
+    display: flex; align-items: center; gap: 12px;
+    height: 44px; padding: 0 0 0 12px; border: 0; background: none; color: var(--navy);
+    font: 700 14px/16px var(--f-head); letter-spacing: var(--ls-eyebrow); text-transform: uppercase; cursor: pointer;
+  }
+  .menu-toggle__bars, .menu-toggle__bars::before, .menu-toggle__bars::after { display: block; width: 22px; height: 2px; background: currentColor; }
+  .menu-toggle__bars { position: relative; }
+  .menu-toggle__bars::before, .menu-toggle__bars::after { content: ""; position: absolute; left: 0; }
+  .menu-toggle__bars::before { top: -7px; }
+  .menu-toggle__bars::after { top: 7px; }
+  .site-header.is-open .menu-toggle__bars { background: transparent; }
+  .site-header.is-open .menu-toggle__bars::before { top: 0; transform: rotate(45deg); }
+  .site-header.is-open .menu-toggle__bars::after { top: 0; transform: rotate(-45deg); }
+
+  /* menu = a drawer that slides in from the right over a scrim. The X (menu-toggle) stays on top. */
+  .site-header::before {          /* scrim; a click on it reaches .site-header and closes the menu */
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    background: rgba(17, 21, 129, 0.32);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .25s ease, visibility 0s linear .25s;
+  }
+  .site-header.is-open::before { opacity: 1; visibility: visible; transition: opacity .35s ease, visibility 0s; }
+  .menu-toggle { position: relative; z-index: 3; }
+  .site-header__menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    width: min(400px, 88vw);
+    padding: 96px 28px 28px;      /* clears the header bar, so the X sits above the drawer's top */
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: var(--white);
+    box-shadow: -24px 0 60px -24px rgba(17, 21, 129, 0.28);
+    transform: translateX(100%);
+    visibility: hidden;
+    /* closing is the quick part; opening uses the iOS drawer curve */
+    transition: transform .26s cubic-bezier(0.32, 0.72, 0, 1), visibility 0s linear .26s;
+  }
+  .site-header.is-open .site-header__menu { transform: none; visibility: visible; transition: transform .42s cubic-bezier(0.32, 0.72, 0, 1), visibility 0s; }
+  html.menu-open { overflow: hidden; }   /* page behind stays put */
+  .main-nav { border-top: 1px solid rgba(17, 21, 129, 0.12); }
+  .main-nav, .hbtn, .hbtn--donate, .hbtn--find { position: static; left: auto; right: auto; top: auto; }
+  .main-nav ul { flex-direction: column; align-items: stretch; font-size: 20px; line-height: 24px; }
+  .main-nav li, .main-nav li + li, .main-nav li:nth-child(2) { margin-left: 0; padding: 14px 0; border-bottom: 1px solid rgba(17, 21, 129, 0.12); }
+  .main-nav li:nth-child(n) a { width: auto; text-align: left; }
+  .main-nav .i-chev { margin: 10px 0 0 12px; }
+  .header-ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; padding-top: 28px; }   /* pinned to the drawer bottom */
+  .hbtn--donate, .hbtn--find { width: auto; padding-right: 17px; }
+
+  /* hero stacks: text first, wide photo under it */
+  .hero .wrap { flex-direction: column; gap: 0; }
+  .hero__text { flex: none; width: 100%; padding-bottom: 0; }
+  .hero__photo { flex: none; width: 100%; aspect-ratio: 16 / 9; margin-top: 40px; }
+
+  .logos { flex-wrap: wrap; justify-content: center; gap: 24px 40px; }
+  .logos__fade { display: none; }
+
+  .site-footer .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); row-gap: 40px; }
+}
+
+/* ---------- tablet ---------- */
+@media (max-width: 1023.98px) {
+  .hero__photo { aspect-ratio: 4 / 3; }
+  /* buttons size to their label once they leave the XD layout */
+  .symposium__btn span, .resources__all span { width: auto; }
+
+  /* mission: photo moves under the text so it never sits behind it */
+  .mission { display: flex; flex-direction: column; background: #EEF3F8; }
+  .mission .wrap { padding-bottom: 32px; }
+  .mission__title { padding-top: 56px; }
+  .mission__text { max-width: 535px; }
+  .mission__bg { position: static; order: 2; height: 420px; object-position: 75% 50%; }
+
+  .symposium { height: auto; }
+  .symposium .wrap { height: auto; padding: 0 0 28px; }
+  .symposium__title { width: auto; line-height: 1.3; padding-top: 28px; }
+  .symposium__meta { margin-top: 10px; }
+  .symposium__btn { position: relative; right: auto; top: auto; width: max-content; margin-top: 20px; padding-right: 25px; }
+
+  .impact__cards { grid-template-columns: minmax(0, 1fr); }
+  .icard { min-height: 0; }
+
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 28px; padding: 32px; }
+
+  .donate .wrap { flex-direction: column; align-items: stretch; gap: 40px; }
+  .donate__text { flex: none; padding-left: 0; }
+  .donate__photo { flex: none; width: 100%; max-width: none; }
+
+  .resources__title { max-width: none; }
+  .resources__all { position: relative; right: auto; top: auto; width: max-content; margin-top: 24px; padding-right: 25px; }
+  .resources__cards { grid-template-columns: minmax(0, 1fr); margin-top: 40px; }
+  /* tablet: image left, text right */
+  .rcard { display: grid; grid-template-columns: minmax(0, 45%) minmax(0, 1fr); grid-template-rows: auto 1fr; column-gap: 24px; min-height: 0; padding: 20px; }
+  .rcard__media { grid-row: 1 / 3; }
+  .rcard__tags { margin-top: 4px; }
+}
+
+/* ---------- mobile ---------- */
+@media (max-width: 767.98px) {
+  .site-header, .site-header .wrap { height: 72px; }
+  .site-header::after { top: 71px; }
+  .brand img { width: 120px; }
+  .menu-toggle__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .site-header__menu { padding: 72px 22px 24px; }
+
+  .eyebrow { white-space: normal; font-size: 12px; line-height: 16px; }
+  .btn { font-size: 16px; }
+
+  .hero__text { padding-top: 40px; }
+  .hero__title { font-size: 40px; line-height: 46px; }
+  .hero__lead { margin-top: 16px; font-size: 16px; line-height: 28px; }
+  /* finder: field and button stack, the distance control spans the card */
+  .finder { padding: 24px 20px; border-radius: 20px; }
+  .finder__row { flex-direction: column; align-items: stretch; gap: 12px; }
+  .finder__go { width: 100%; margin-top: 0; justify-content: center; padding-left: 0; }
+  .finder__go span { width: auto; }
+  .finder__foot { flex-direction: column; align-items: stretch; gap: 14px; margin-top: 18px; }
+  .finder__radius { flex-direction: column; align-items: stretch; gap: 10px; }
+  .finder__locate { justify-content: flex-start; width: auto; height: 20px; }
+  .seg { grid-template-columns: repeat(var(--n), 1fr); }
+  .seg label { height: 36px; }
+  .hero__photo { border-radius: 20px; }
+
+  .icard__head { padding: 28px 20px 22px; }
+  .icard__list, .icard--3 .icard__list { margin-inline: 20px; }
+
+  .mission__title { padding-top: 48px; }
+  .mission__text { font-size: 16px; line-height: 28px; }
+  .mission__bg { height: 300px; }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 16px; row-gap: 24px; padding: 24px 20px; border-radius: 20px; }
+  .stat dt { font-size: 36px; line-height: 44px; }
+  .stat dd { margin-top: 6px; font-size: 14px; line-height: 20px; }
+
+  .donate .wrap { padding-top: 56px; }
+  .donate__lead { margin-left: 0; font-size: 17px; line-height: 30px; }
+  .donate__btn { margin-left: 0; }
+  .donate__photo { border-radius: 24px; }
+
+  .resources .eyebrow { padding-top: 56px; }
+  .resources__mark { left: auto; right: -120px; width: 260px; height: 260px; }
+  /* card rows stack vertically */
+  .rcard { display: block; padding: 16px 16px 28px; }
+  .rcard__tags { margin-top: 20px; }
+  .rcard__title { font-size: 20px; line-height: 27px; }
+
+  .logos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); justify-items: center; align-items: center; gap: 8px 16px; }
+  .logos li { transform: scale(0.8); }
+
+  .site-footer .wrap { grid-template-columns: minmax(0, 1fr); }
+  .site-footer__bottom { flex-direction: column; }
+  .copyright { white-space: normal; }
+  .credits { flex-wrap: wrap; width: auto; row-gap: 6px; }
+}

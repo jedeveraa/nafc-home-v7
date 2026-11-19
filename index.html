@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en" data-lenis="off">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NAFC | The National Association of Free &amp; Charitable Clinics</title>
+<meta name="description" content="1,400 Free &amp; Charitable Clinics and Pharmacies across the U.S. provide healthcare for uninsured and underinsured people in their communities.">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="responsive.css">
+<link rel="stylesheet" href="megamenu.css">
+<!-- xd-motion -->
+<link rel="stylesheet" href="motion-core.css">
+<link rel="stylesheet" href="animations.css">
+<script>
+  /* Motion is on by default. Playwright (the XD diff) and ?static get the plain static layout.
+     ?motion forces motion on, even under Playwright (used by motion_smoke.mjs). */
+  (function () {
+    var q = location.search;
+    if (/[?&]motion\b/.test(q) || (!navigator.webdriver && !/[?&]static\b/.test(q))) document.documentElement.classList.add('js');
+  })();
+</script>
+<script src="responsive.js" defer></script>
+<script src="megamenu.js" defer></script>
+<script src="motion-core.js" defer></script>
+<script src="main.js" defer></script>
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+<symbol id="i-dots" viewBox="0 0 10 10">
+<rect width="4" height="4" fill="var(--d1)"/>
+<rect y="6" width="4" height="4" fill="var(--d2)"/>
+<rect x="6" width="4" height="4" fill="var(--d2)"/>
+<rect x="6" y="6" width="4" height="4" fill="var(--d1)"/>
+</symbol>
+<symbol id="i-heart" viewBox="0 0 11.852 10.954" overflow="visible">
+<path d="M 7.927 3.906 C 9.319 2.656 11.47 2.698 12.811 4.041 C 14.152 5.385 14.198 7.526 12.95 8.922 L 7.926 13.954 L 2.902 8.922 C 1.655 7.526 1.701 5.382 3.041 4.041 C 4.383 2.7 6.531 2.654 7.927 3.906 Z" transform="matrix(1 0 0 1 -2 -3)" fill="currentColor"/>
+</symbol>
+<symbol id="i-chev" viewBox="0 0 7 3.5" overflow="visible">
+<path d="M 6 9 L 9.5 12.5 L 13 9" transform="matrix(1 0 0 1 -6 -9)" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+<symbol id="i-pin" viewBox="0 0 11.275 13.61" overflow="visible">
+<path d="M 8.638 13.839 L 11.738 10.738 C 13.45 9.026 13.45 6.249 11.738 4.537 C 10.026 2.825 7.249 2.825 5.537 4.537 C 3.825 6.249 3.825 9.026 5.537 10.738 L 8.638 13.839 Z M 8.638 15.61 L 4.651 11.624 C 2.45 9.422 2.45 5.853 4.651 3.651 C 6.853 1.45 10.422 1.45 12.624 3.651 C 14.826 5.853 14.826 9.422 12.624 11.624 L 8.638 15.61 Z M 8.638 8.89 C 9.33 8.89 9.89 8.33 9.89 7.638 C 9.89 6.946 9.33 6.385 8.638 6.385 C 7.946 6.385 7.385 6.946 7.385 7.638 C 7.385 8.33 7.946 8.89 8.638 8.89 Z M 8.638 10.143 C 7.254 10.143 6.132 9.021 6.132 7.638 C 6.132 6.254 7.254 5.132 8.638 5.132 C 10.021 5.132 11.143 6.254 11.143 7.638 C 11.143 9.021 10.021 10.143 8.638 10.143 Z" transform="matrix(1 0 0 1 -3 -2)" fill="currentColor"/>
+</symbol>
+<symbol id="i-search" viewBox="0 0 11.898 11.898" overflow="visible">
+<path d="M 1.487 5.205 C 1.487 3.123 3.123 1.487 5.205 1.487 C 7.288 1.487 8.924 3.123 8.924 5.205 C 8.924 7.288 7.288 8.924 5.205 8.924 C 3.123 8.924 1.487 7.288 1.487 5.205 Z M 10.634 11.675 C 10.932 11.973 11.378 11.973 11.675 11.675 C 11.973 11.378 11.973 10.932 11.675 10.634 L 9.37 8.329 C 10.039 7.436 10.411 6.395 10.411 5.205 C 10.411 2.305 8.106 0 5.205 0 C 2.305 0 0 2.305 0 5.205 C 0 8.106 2.305 10.411 5.205 10.411 C 6.395 10.411 7.436 10.039 8.329 9.37 L 10.634 11.675 Z" fill="currentColor"/>
+</symbol>
+<symbol id="i-crosshairs" viewBox="0 0 14.672 14.672" overflow="visible">
+<circle cx="3" cy="3" r="3" transform="matrix(1 0 0 1 4.336 4.336)" fill="currentColor"/>
+<path d="M 14.294 6.957 L 13.632 6.957 C 13.338 4.107 11.066 1.835 8.215 1.54 L 8.215 0.879 C 8.215 0.532 7.933 0.25 7.586 0.25 C 7.239 0.25 6.957 0.532 6.957 0.879 L 6.957 1.54 C 4.107 1.835 1.835 4.107 1.54 6.957 L 0.879 6.957 C 0.532 6.957 0.25 7.239 0.25 7.586 C 0.25 7.933 0.532 8.215 0.879 8.215 L 1.54 8.215 C 1.835 11.066 4.107 13.338 6.957 13.632 L 6.957 14.294 C 6.957 14.641 7.239 14.922 7.586 14.922 C 7.933 14.922 8.215 14.641 8.215 14.294 L 8.215 13.632 C 11.066 13.338 13.338 11.066 13.632 8.215 L 14.294 8.215 C 14.641 8.215 14.922 7.933 14.922 7.586 C 14.922 7.239 14.641 6.957 14.294 6.957 Z M 7.586 12.407 C 4.928 12.407 2.765 10.244 2.765 7.586 C 2.765 4.928 4.928 2.765 7.586 2.765 C 10.244 2.765 12.407 4.928 12.407 7.586 C 12.407 10.244 10.244 12.407 7.586 12.407 Z" transform="matrix(1 0 0 1 -0.25 -0.25)" fill="currentColor"/>
+</symbol>
+<symbol id="i-arrow-light" viewBox="0 0 13.157 10.765" overflow="visible">
+<path d="M 40 128 L 52.559 128" transform="matrix(1 0 0 1 -40 -122.618)" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="square" stroke-linejoin="round"/>
+<path d="M 144 56 L 149.382 61.382 L 144 66.765" transform="matrix(1 0 0 1 -136.226 -56)" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="square"/>
+</symbol>
+<symbol id="i-arrow-ur" viewBox="0 0 20.5 20.5" overflow="visible">
+<path d="M 64 74.25 L 74.25 64" transform="matrix(1 0 0 1 -58.875 -58.875)" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 88 64 L 96.328 64 L 96.328 72.328" transform="matrix(1 0 0 1 -80.953 -58.875)" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+<symbol id="i-marker" viewBox="0 0 12.61 16.814" overflow="visible">
+<path d="M 5.657 16.474 C 0.886 9.557 0 8.847 0 6.305 C 0 2.823 2.823 0 6.305 0 C 9.787 0 12.61 2.823 12.61 6.305 C 12.61 8.847 11.724 9.557 6.953 16.474 C 6.64 16.927 5.97 16.927 5.657 16.474 Z M 6.305 8.932 C 7.756 8.932 8.932 7.756 8.932 6.305 C 8.932 4.854 7.756 3.678 6.305 3.678 C 4.854 3.678 3.678 4.854 3.678 6.305 C 3.678 7.756 4.854 8.932 6.305 8.932 Z" fill="currentColor"/>
+</symbol>
+<symbol id="i-phone" viewBox="0 0 15.511 15.511" overflow="visible">
+<path d="M 14.937 0.735 L 11.786 0.008 C 11.444 -0.071 11.093 0.108 10.953 0.429 L 9.499 3.822 C 9.372 4.119 9.457 4.467 9.708 4.67 L 11.544 6.173 C 10.454 8.496 8.548 10.429 6.176 11.541 L 4.673 9.705 C 4.467 9.453 4.122 9.369 3.825 9.496 L 0.432 10.95 C 0.108 11.092 -0.071 11.444 0.008 11.786 L 0.735 14.937 C 0.811 15.264 1.102 15.5 1.444 15.5 C 9.202 15.5 15.501 9.214 15.501 1.444 C 15.501 1.104 15.267 0.81 14.937 0.735 Z" transform="matrix(1 0 0 1 0.01 0.011)" fill="currentColor"/>
+</symbol>
+<symbol id="i-envelope" viewBox="0 0 17.688 13.266" overflow="visible">
+<path d="M 17.353 68.381 C 17.488 68.273 17.688 68.374 17.688 68.543 L 17.688 75.608 C 17.688 76.523 16.945 77.266 16.03 77.266 L 1.658 77.266 C 0.743 77.266 0 76.523 0 75.608 L 0 68.546 C 0 68.374 0.197 68.277 0.335 68.384 C 1.109 68.985 2.135 69.749 5.659 72.309 C 6.388 72.841 7.618 73.96 8.844 73.953 C 10.077 73.963 11.331 72.82 12.033 72.309 C 15.557 69.749 16.579 68.982 17.353 68.381 Z M 8.844 72.844 C 9.646 72.858 10.799 71.835 11.38 71.414 C 15.964 68.087 16.313 67.797 17.37 66.968 C 17.571 66.812 17.688 66.57 17.688 66.315 L 17.688 65.658 C 17.688 64.743 16.945 64 16.03 64 L 1.658 64 C 0.743 64 0 64.743 0 65.658 L 0 66.315 C 0 66.57 0.117 66.809 0.318 66.968 C 1.375 67.793 1.724 68.087 6.308 71.414 C 6.889 71.835 8.043 72.858 8.844 72.844 Z" transform="matrix(1 0 0 1 0 -64)" fill="currentColor"/>
+</symbol>
+<symbol id="i-instagram" viewBox="0 0 16.848 16.848" overflow="visible">
+<path d="M 10.425 7.897 C 9.029 7.897 7.898 9.028 7.898 10.424 C 7.898 11.82 9.029 12.951 10.425 12.951 C 11.821 12.951 12.952 11.82 12.952 10.424 C 12.952 9.028 11.821 7.897 10.425 7.897 Z M 10.425 6.212 C 12.75 6.212 14.637 8.097 14.637 10.424 C 14.637 12.749 12.752 14.636 10.425 14.636 C 8.1 14.636 6.213 12.751 6.213 10.424 C 6.213 8.099 8.097 6.212 10.425 6.212 Z M 15.901 6.001 C 15.901 6.582 15.428 7.054 14.848 7.054 C 14.266 7.054 13.795 6.581 13.795 6.001 C 13.795 5.42 14.267 4.948 14.848 4.948 C 15.427 4.948 15.901 5.42 15.901 6.001 Z M 10.425 3.685 C 8.34 3.685 8.001 3.69 7.031 3.733 C 6.371 3.764 5.928 3.853 5.516 4.013 C 5.151 4.155 4.887 4.324 4.606 4.605 C 4.324 4.887 4.155 5.15 4.014 5.516 C 3.854 5.928 3.765 6.37 3.734 7.03 C 3.691 7.96 3.686 8.285 3.686 10.424 C 3.686 12.508 3.691 12.848 3.734 13.818 C 3.765 14.478 3.854 14.921 4.014 15.332 C 4.156 15.698 4.326 15.962 4.605 16.242 C 4.888 16.525 5.152 16.694 5.515 16.834 C 5.931 16.995 6.373 17.084 7.031 17.114 C 7.961 17.158 8.286 17.163 10.425 17.163 C 12.509 17.163 12.849 17.158 13.819 17.114 C 14.477 17.084 14.921 16.994 15.333 16.835 C 15.698 16.693 15.963 16.523 16.243 16.244 C 16.526 15.96 16.695 15.697 16.835 15.334 C 16.996 14.919 17.085 14.476 17.115 13.818 C 17.159 12.888 17.164 12.563 17.164 10.424 C 17.164 8.339 17.159 8 17.115 7.03 C 17.084 6.371 16.995 5.927 16.836 5.515 C 16.694 5.151 16.525 4.886 16.244 4.605 C 15.961 4.323 15.699 4.154 15.333 4.013 C 14.921 3.853 14.478 3.764 13.819 3.733 C 12.889 3.69 12.564 3.685 10.425 3.685 Z M 10.425 2 C 12.713 2 12.999 2.008 13.898 2.051 C 14.794 2.092 15.406 2.234 15.943 2.442 C 16.498 2.656 16.967 2.946 17.435 3.414 C 17.903 3.882 18.192 4.352 18.407 4.906 C 18.614 5.443 18.756 6.055 18.798 6.951 C 18.838 7.85 18.849 8.135 18.849 10.424 C 18.849 12.713 18.841 12.998 18.798 13.897 C 18.757 14.793 18.614 15.405 18.407 15.942 C 18.193 16.497 17.903 16.966 17.435 17.434 C 16.967 17.902 16.496 18.191 15.943 18.406 C 15.406 18.613 14.794 18.755 13.898 18.797 C 12.999 18.837 12.713 18.848 10.425 18.848 C 8.136 18.848 7.851 18.84 6.952 18.797 C 6.056 18.756 5.445 18.613 4.907 18.406 C 4.353 18.192 3.883 17.902 3.415 17.434 C 2.947 16.966 2.658 16.495 2.443 15.942 C 2.235 15.405 2.094 14.793 2.052 13.897 C 2.012 12.998 2.001 12.713 2.001 10.424 C 2.001 8.135 2.009 7.85 2.052 6.951 C 2.093 6.054 2.235 5.443 2.443 4.906 C 2.657 4.352 2.947 3.882 3.415 3.414 C 3.883 2.946 4.353 2.657 4.907 2.442 C 5.444 2.234 6.055 2.093 6.952 2.051 C 7.851 2.011 8.136 2 10.425 2 Z" transform="matrix(1 0 0 1 -2.001 -2)" fill="currentColor"/>
+</symbol>
+<symbol id="i-flickr" viewBox="0 0 16.334 7.424" overflow="visible">
+<path d="M 8.424 10.712 C 8.424 12.762 6.762 14.424 4.712 14.424 C 2.662 14.424 1 12.762 1 10.712 C 1 8.662 2.662 7 4.712 7 C 6.762 7 8.424 8.662 8.424 10.712 Z M 17.334 10.712 C 17.334 12.762 15.672 14.424 13.621 14.424 C 11.571 14.424 9.909 12.762 9.909 10.712 C 9.909 8.662 11.571 7 13.621 7 C 15.672 7 17.334 8.662 17.334 10.712 Z" transform="matrix(1 0 0 1 -1 -7)" fill="currentColor"/>
+</symbol>
+<symbol id="i-tiktok" viewBox="0 0 16.63 18.375" overflow="visible">
+<path d="M 10.052 1.8 L 10.052 7.693 C 9.68 7.624 9.296 7.588 8.904 7.588 C 5.428 7.588 2.61 10.406 2.61 13.882 C 2.61 17.358 5.428 20.175 8.904 20.175 C 12.38 20.175 15.197 17.358 15.197 13.882 L 15.197 10.449 C 16.149 10.853 17.187 11.079 18.321 11.079 L 19.24 11.079 L 19.24 5.934 L 18.321 5.934 C 16.572 5.934 15.197 4.522 15.197 2.719 L 15.197 1.8 L 10.052 1.8 Z M 11.89 3.638 L 13.44 3.638 C 13.802 5.677 15.351 7.309 17.402 7.688 L 17.402 9.176 C 16.449 9.036 15.588 8.678 14.79 8.144 L 13.36 7.187 L 13.36 13.882 C 13.36 16.343 11.365 18.338 8.904 18.338 C 6.443 18.338 4.448 16.343 4.448 13.882 C 4.448 11.421 6.443 9.426 8.904 9.426 C 8.981 9.426 9.058 9.428 9.134 9.431 L 9.134 10.904 C 9.058 10.899 8.981 10.896 8.904 10.896 C 7.255 10.896 5.918 12.233 5.918 13.882 C 5.918 15.531 7.255 16.868 8.904 16.868 C 10.553 16.868 11.89 15.531 11.89 13.882 C 11.89 10.467 11.889 7.052 11.89 3.638 Z M 7.755 13.882 C 7.755 13.247 8.27 12.733 8.904 12.733 C 9.538 12.733 10.052 13.247 10.052 13.882 C 10.052 14.516 9.538 15.03 8.904 15.03 C 8.27 15.03 7.755 14.516 7.755 13.882 Z" transform="matrix(1 0 0 1 -2.61 -1.8)" fill="currentColor"/>
+</symbol>
+<symbol id="i-youtube" viewBox="0 0 16.417 11.566" overflow="visible">
+<path d="M 16.074 6.533 C 15.885 5.822 15.329 5.263 14.622 5.072 C 13.342 4.727 8.208 4.727 8.208 4.727 C 8.208 4.727 3.075 4.727 1.795 5.072 C 1.088 5.262 0.532 5.822 0.343 6.533 C 0 7.822 0 10.51 0 10.51 C 0 10.51 0 13.199 0.343 14.487 C 0.532 15.198 1.088 15.758 1.795 15.948 C 3.075 16.293 8.208 16.293 8.208 16.293 C 8.208 16.293 13.342 16.293 14.622 15.948 C 15.329 15.758 15.885 15.198 16.074 14.487 C 16.417 13.199 16.417 10.51 16.417 10.51 C 16.417 10.51 16.417 7.822 16.074 6.533 Z M 6.529 12.951 L 6.529 8.069 L 10.82 10.51 L 6.529 12.951 Z" transform="matrix(1 0 0 1 0 -4.727)" fill="currentColor"/>
+</symbol>
+<symbol id="i-facebook" viewBox="0 0 8.677 16.201" overflow="visible">
+<path d="M 30.999 9.113 L 31.449 6.181 L 28.635 6.181 L 28.635 4.278 C 28.635 3.476 29.028 2.694 30.288 2.694 L 31.567 2.694 L 31.567 0.198 C 31.567 0.198 30.407 0 29.297 0 C 26.98 0 25.465 1.404 25.465 3.947 L 25.465 6.181 L 22.89 6.181 L 22.89 9.113 L 25.465 9.113 L 25.465 16.201 L 28.635 16.201 L 28.635 9.113 L 30.999 9.113 Z" transform="matrix(1 0 0 1 -22.89 0)" fill="currentColor"/>
+</symbol>
+<symbol id="i-linkedin" viewBox="0 0 15.748 15.748" overflow="visible">
+<path d="M 16.418 16.42 L 14.086 16.42 L 14.086 12.766 C 14.086 11.894 14.068 10.773 12.871 10.773 C 11.655 10.773 11.469 11.721 11.469 12.702 L 11.469 16.42 L 9.137 16.42 L 9.137 8.906 L 11.377 8.906 L 11.377 9.930 L 11.407 9.930 C 11.72 9.339 12.481 8.716 13.619 8.716 C 15.982 8.716 16.419 10.271 16.419 12.295 L 16.419 16.42 L 16.418 16.42 Z M 6.503 7.877 C 5.752 7.877 5.149 7.27 5.149 6.522 C 5.149 5.776 5.753 5.169 6.503 5.169 C 7.251 5.169 7.857 5.776 7.857 6.522 C 7.857 7.27 7.25 7.877 6.503 7.877 Z M 7.672 16.42 L 5.334 16.42 L 5.334 8.906 L 7.672 8.906 L 7.672 16.42 Z M 17.585 3 L 4.163 3 C 3.521 3 3.001 3.508 3.001 4.135 L 3.001 17.614 C 3.001 18.241 3.521 18.748 4.163 18.748 L 17.583 18.748 C 18.224 18.748 18.749 18.241 18.749 17.614 L 18.749 4.135 C 18.749 3.508 18.224 3 17.583 3 L 17.585 3 Z" transform="matrix(1 0 0 1 -3.001 -3)" fill="currentColor"/>
+</symbol>
+</svg>
+
+<header class="site-header" data-sticky-header>
+  <div class="wrap">
+    <a class="brand" href="#"><img src="assets/logos/nafc-logo.png" width="185" height="94" alt="NAFC, The National Association of Free &amp; Charitable Clinics"></a>
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu"><span class="menu-toggle__bars" aria-hidden="true"></span><span class="menu-toggle__label">Menu</span></button>
+
+    <div class="site-header__menu" id="site-menu">
+    <nav class="main-nav" aria-label="Main">
+      <ul>
+        <li><a href="https://nafcclinics.org/get-care/">Get Care</a></li>
+        <li class="has-mega">
+          <button class="mnav__btn" type="button" aria-expanded="false" aria-controls="mega-involved"><span class="mnav__label">Get Involved</span><svg class="i-chev" aria-hidden="true"><use href="#i-chev"/></svg></button>
+          <div class="mega" id="mega-involved">
+            <div class="mega__inner">
+              <div class="mega__intro">
+                <p class="eyebrow"><svg class="dots" aria-hidden="true"><use href="#i-dots"/></svg><span>Get Involved</span></p>
+                <p class="mega__title">Ways to get involved</p>
+                <p class="mega__text">Give, volunteer, become a member, or start a clinic in your community.</p>
+                <a class="mega__more" href="https://nafcclinics.org/get-involved/"><span>Explore Get Involved</span><svg class="i-arrow-light" aria-hidden="true"><use href="#i-arrow-light"/></svg></a>
+              </div>
+              <ul class="mega__links">
+              <li><a href="https://nafcclinics.org/get-involved/">Ways to Get Involved</a></li>
+              <li><a href="https://nafcclinics.org/get-involved/ways-to-give/">Give</a></li>
+              <li><a href="https://nafcclinics.org/get-involved/volunteer/">Volunteer</a></li>
+              <li><a href="https://nafcclinics.org/get-involved/become-a-member/">Become a Member</a></li>
+              <li class="mega__group"><a href="https://nafcclinics.org/get-involved/start-a-clinic/">Start a Clinic</a><ul class="mega__sub"><li><a href="https://nafcclinics.org/get-involved/start-a-clinic/volunteers-in-medicine/">Volunteers in Medicine</a></li></ul></li>
+              <li class="mega__group"><a href="https://nafcclinics.org/get-involved/learn/">Learn</a><ul class="mega__sub"><li><a href="https://nafcclinics.org/get-involved/learn/symposium/">Symposium</a></li></ul></li>
+              <li><a href="https://nafcclinics.org/get-involved/job-listings/">Job Listings</a></li>
+              </ul>
+              <a class="mega__card" href="https://nafcclinics.org/get-involved/ways-to-give/">
+                <span class="mega__media"><img src="assets/img/donate-team.webp" alt="" loading="lazy"></span>
+                <span class="mega__kicker">Donate</span>
+                <span class="mega__ctitle">A donation here turns into a visit somewhere.<svg class="i-arrow-light" aria-hidden="true"><use href="#i-arrow-light"/></svg></span>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="has-mega">
+          <button class="mnav__btn" type="button" aria-expanded="false" aria-controls="mega-impact"><span class="mnav__label">Our Impact</span><svg class="i-chev" aria-hidden="true"><use href="#i-chev"/></svg></button>
+          <div class="mega" id="mega-impact">
+            <div class="mega__inner">
+              <div class="mega__intro">
+                <p class="eyebrow"><svg class="dots" aria-hidden="true"><use href="#i-dots"/></svg><span>Our Impact</span></p>
+                <p class="mega__title">How the NAFC makes a difference</p>
+                <p class="mega__text">Funding, medication, training and advocacy for the clinics that care for uninsured people.</p>
+                <a class="mega__more" href="https://nafcclinics.org/our-impact/"><span>Explore Our Impact</span><svg class="i-arrow-light" aria-hidden="true"><use href="#i-arrow-light"/></svg></a>
+              </div>
+              <ul class="mega__links">
+              <li><a href="https://nafcclinics.org/our-impact/">Our Impact in Communities</a></li>
+              <li><a href="https://nafcclinics.org/our-impact/clinic-support/">Clinic Support</a></li>
+              <li class="mega__group"><a href="https://nafcclinics.org/our-impact/charitable-pharmacies-of-america/medication-access/">Medication Access</a><ul class="mega__sub"><li><a href="https://nafcclinics.org/our-impact/charitable-pharmacies-of-america/">Charitable Pharmacies of America</a></li><li><a href="https://nafcclinics.org/playbook/">Playbook for a Community Charitable Pharmacy</a></li></ul></li>
+              <li><a href="https://nafcclinics.org/our-impact/disaster-relief/">Disaster Relief</a></li>
+              <li class="mega__group"><a href="https://nafcclinics.org/our-impact/education-training/">Education &amp; Training</a><ul class="mega__sub"><li><a href="https://nafcclinics.org/get-involved/learn/symposium/">Symposium</a></li></ul></li>
+              <li><a href="https://nafcclinics.org/our-impact/health-equity/">Health Equity</a></li>
+              <li><a href="https://nafcclinics.org/our-impact/funding/">Funding</a></li>
+              <li><a href="https://nafcclinics.org/our-impact/public-policy/">Public Policy</a></li>
+              <li><a href="https://nafcclinics.org/our-impact/quality-standards/">Quality Standards</a></li>
+              </ul>
+              <a class="mega__card mega__card--tint" href="https://nafcclinics.org/get-involved/learn/symposium/">
+                <span class="mega__media"><img src="assets/img/symposium-bg.webp" alt="" loading="lazy"></span>
+                <span class="mega__kicker">Sept 26-27, 2027 · Phoenix, Arizona</span>
+                <span class="mega__ctitle">2027 Charitable Healthcare Symposium<svg class="i-arrow-light" aria-hidden="true"><use href="#i-arrow-light"/></svg></span>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="has-mega">
+          <button class="mnav__btn" type="button" aria-expanded="false" aria-controls="mega-about"><span class="mnav__label">About</span><svg class="i-chev" aria-hidden="true"><use href="#i-chev"/></svg></button>
+          <div class="mega" id="mega-about">
+            <div class="mega__inner">
+              <div class="mega__intro">
+                <p class="eyebrow"><svg class="dots" aria-hidden="true"><use href="#i-dots"/></svg><span>About</span></p>
+                <p class="mega__title">About the NAFC</p>
+                <p class="mega__text">The only nonprofit focused solely on free and charitable clinics, charitable pharmacies, and the people who depend on them.</p>
+                <a class="mega__more" href="https://nafcclinics.org/about-us/"><span>Explore About Us</span><svg class="i-arrow-light" aria-hidden="true"><use href="#i-arrow-light"/></svg></a>
+              </div>
+              <ul class="mega__links">
+              <li><a href="https://nafcclinics.org/about-us/">About Us</a></li>
+              <li><a href="https://nafcclinics.org/about-us/our-mission/">Our Mission</a></li>
+              <li><a href="https://nafcclinics.org/about-us/our-history/">Our History</a></li>
+              <li><a href="https://nafcclinics.org/about-us/our-leaders/">Our Leaders</a></li>
+              <li><a href="https://nafcclinics.org/about-us/partners/">Our Partners</a></li>
+              <li><a href="https://nafcclinics.org/about-us/our-members/">Our Members</a></li>
+              <li><a href="https://www.flickr.com/photos/nafcclinics/albums/with/72157719768736579" target="_blank" rel="noopener">Photo Gallery</a></li>
+              </ul>
+              <a class="mega__card" href="https://nafcclinics.org/about-us/our-members/">
+                <span class="mega__media"><img src="assets/img/hero-reception.webp" alt="" loading="lazy"></span>
+                <span class="mega__kicker">Our Members</span>
+                <span class="mega__ctitle">1,400 free and charitable clinics and pharmacies.<svg class="i-arrow-light" aria-hidden="true"><use href="#i-arrow-light"/></svg></span>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li><a href="https://nafcclinics.org/contact/">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-ctas">
+      <a class="hbtn hbtn--donate" href="#"><svg class="i-heart" aria-hidden="true"><use href="#i-heart"/></svg><span>Donate Now</span></a>
+      <a class="hbtn hbtn--find" href="#"><svg class="i-pin" aria-hidden="true"><use href="#i-pin"/></svg><span>Find a Clinic</span></a>
+    </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- hero: 122 → 877 -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div class="hero__text">
+        <p class="eyebrow" data-load style="--d:0"><svg class="dots" aria-hidden="true"><use href="#i-dots"/></svg><span>Free &amp; Charitable Clinics Network</span></p>
+        <h1 class="hero__title" id="hero-title" data-load style="--d:1">Find Free Healthcare near you.</h1>
+        <p class="hero__lead" data-load style="--d:2">1,400 Free &amp; Charitable Clinics and Pharmacies across the U.S. provide healthcare for uninsured and underinsured people in their communities.</p>
+
+        <form class="finder" action="#" role="search" data-load style="--d:3">
+          <label class="finder__label" for="finder-q">Your city and state, or ZIP code</label>
+          <div class="finder__row">
+            <div class="finder__field">
+              <input class="finder__input" id="finder-q" type="text" name="q" placeholder="Alexandria, VA or 22314" autocomplete="postal-code">
+            </div>
+            <button class="finder__go" type="submit"><svg class="i-search" aria-hidden="true"><use href="#i-search"/></svg><span>Find Clinics</span></button>
+          </div>
+          <div class="finder__foot">
+          <fieldset class="finder__radius">
+            <legend class="finder__within">Within</legend>
+            <div class="seg">
+              <span class="seg__thumb" aria-hidden="true"></span>
+              <label><input type="radio" name="r" value="10" checked><span>10 mi</span></label>
+              <label><input type="radio" name="r" value="20"><span>20 mi</span></label>
+              <label><input type="radio" name="r" value="50"><span>50 mi</span></label>
+              <label><input type="radio" name="r" value="100"><span>100 mi</span></label>
+            </div>
+          </fieldset>
+          <button class="finder__locate" type="button"><svg class="i-crosshairs" aria-hidden="true"><use href="#i-crosshairs"/></svg><span>Use my location</span></button>
+          </div>
+        </form>
+
+        <div class="alt" data-load style="--d:4">
+          <p>Not looking for care?</p>
+          <a class="alt__volunteer" href="#">Volunteer</a>
+          <a class="alt__start" href="#">Start or join a clinic</a>
+          <a class="alt__login" href="#">Member Login</a>
+          <a class="alt__give" href="#">Give</a>
+        </div>
+      </div>
+
+      <figure class="hero__photo m-photo-load"><img src="assets/img/hero-reception.webp" width="1535" height="1024" alt="Clinic staff laughing together at a reception desk"></figure>
+    </div>
+  </section>
+
+  <!-- symposium band: 877 → 1031 -->
+  <section class="symposium" aria-labelledby="symposium-title">
+    <img class="symposium__bg" src="assets/img/symposium-bg.webp" width="1448" height="1086" alt="">
+    <div class="symposium__shade" aria-hidden="true"></div>
+    <div class="wrap">
+      <h2 class="symposium__title" id="symposium-title" data-reveal="blur">2027 Charitable Healthcare Symposium</h2>
+      <p class="symposium__meta" data-reveal="blur"><span class="symposium__date">Sept 26-27, 2027</span><span class="symposium__dot" aria-hidden="true"></span><span>Phoenix, Arizona</span></p>
+      <a class="btn btn--white symposium__btn" href="#" data-reveal="blur"><span>See the symposium</span><svg class="i-arrow-light" aria-hidden="true"><use href="#i-arrow-light"/></svg></a>
+    </div>
+  </section>
+
+  <!-- our impact: 1031 → 1699 -->
+  <section class="impact" aria-labelledby="impact-title">
+    <div class="wrap">
+      <p class="eyebrow impact__eyebrow" data-reveal="blur"><svg class="dots" aria-hidden="true"><use href="#i-dots"/></svg><span>Our Impact</span></p>
+      <h2 class="h2 impact__title" id="impact-title" data-reveal="blur">How the NAFC makes a difference</h2>
+
+      <div class="impact__cards">
+        <article class="icard" data-reveal="blur">
+          <div class="icard__head">
+            <h3 class="icard__title">Funding and relief</h3>
+            <p class="icard__text">Money and medication moving to the clinics that need them, including after a disaster.</p>
+          </div>
+          <ul class="icard__list">
+            <li><a href="#">Funding</a><svg class="i-arrow-ur" aria-hidden="true"><use href="#i-arrow-ur"/></svg></li>
+            <li><a href="#">Clinic Support</a><svg class="i-arrow-ur" aria-hidden="true"><use href="#i-arrow-ur"/></svg></li>
+            <li><a href="#">Disaster Relief</a><svg class="i-arrow-ur" aria-hidden="true"><use href="#i-arrow-ur"/></svg></li>
+            <li><a href="#">Charitable Pharmacies of America</a><svg class="i-arrow-ur" aria-hidden="true"><use href="#i-arrow-ur"/></svg></li>
+          </ul>
+        </article>
+        <article class="icard" data-reveal="blur">
+          <div class="icard__head">
+            <h3 class="icard__title">Standards and training</h3>
+            <p class="icard__text">The quality floor for member clinics, plus the education that keeps teams current.</p>
+          </div>
+          <ul class="icard__list">
+            <li><a href="#">Quality Standards</a><svg class="i-arrow-ur" aria-hidden="true"><use href="#i-arrow-ur"/></svg></li>
+            <li><a href="#">Education and Training</a><svg class="i-arrow-ur" aria-hidden="true"><use href="#i-arrow-ur"/></svg></li>
+            <li><a href="#">Clinic Support</a><svg class="i-arrow-ur" aria-hidden="true"><use href="#i-arrow-ur"/></svg></li>
+          </ul>
+        </article>
+        <article class="icard icard--3" data-reveal="blur">
+          <div class="icard__head">
+            <h3 class="icard__title">Advocacy and equity</h3>
+            <p class="icard__text">Making the case in Washington for the people these clinics serve.</p>
+          </div>
+          <ul class="icard__list">
+            <li><a href="#">Public Policy</a><svg class="i-arrow-ur" aria-hidden="true"><use href="#i-arrow-ur"/></svg></li>
+            <li><a href="#">Health Equity</a><svg class="i-arrow-ur" aria-hidden="true"><use href="#i-arrow-ur"/></svg></li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- building a healthy america + numbers: 1699 → 2399 -->
+  <section class="mission" aria-labelledby="mission-title">
+    <img class="mission__bg" src="assets/img/building-child.webp" width="1672" height="941" alt="">
+    <div class="wrap">
+      <h2 class="h2 mission__title" id="mission-title" data-reveal="blur">Building a healthy America, one person at a time.</h2>
+      <p class="mission__text" data-reveal="blur">The NAFC is the only nonprofit whose mission is focused solely on free and charitable clinics, charitable pharmacies, and the medically underserved people who depend on them.</p>
+      <a class="btn btn--navy mission__btn" href="#" data-reveal="blur"><span>See Reports</span></a>
+
+      <dl class="stats" data-reveal="blur">
+        <div class="stat stat--1"><dt data-count="1400" data-suffix="+">1400+</dt><dd>Free and charitable clinics and pharmacies</dd></div>
+        <div class="stat stat--2"><dt data-count="1.9" data-decimals="1" data-suffix="M">1.9M</dt><dd>Patients served each year</dd></div>
+        <div class="stat stat--3"><dt data-count="8.2" data-decimals="1" data-suffix="M">8.2M</dt><dd>Patient visits each year</dd></div>
+        <div class="stat stat--4"><dt data-count="171" data-suffix="k+">171k+</dt><dd>Volunteers each year</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- donate: 2399 → 2980 -->
+  <section class="donate" aria-labelledby="donate-title">
+    <div class="wrap">
+      <div class="donate__text">
+        <p class="eyebrow" data-reveal="blur"><svg class="dots" aria-hidden="true"><use href="#i-dots"/></svg><span>Donate</span></p>
+        <h2 class="h2 donate__title" id="donate-title" data-reveal="blur">A donation here turns into a visit somewhere.</h2>
+        <p class="donate__lead" data-reveal="blur">Gifts to the NAFC fund the clinics and charitable pharmacies that treat people who have no insurance and no other option. Most of them run on volunteers and donations alone.</p>
+        <a class="btn btn--navy donate__btn" href="#" data-reveal="blur"><svg class="i-heart" aria-hidden="true"><use href="#i-heart"/></svg><span>Donate Now</span></a>
+      </div>
+      <figure class="donate__photo" data-reveal="photo"><img src="assets/img/donate-team.webp" width="1536" height="1024" alt="People's Health Clinic team at their 20th anniversary"></figure>
+    </div>
+  </section>
+
+  <!-- resource library: 2980 → 3751 -->
+  <section class="resources" aria-labelledby="resources-title">
+    <img class="resources__mark" src="assets/deco-mark.svg" width="443.715" height="443.467" alt="">
+    <div class="wrap">
+      <p class="eyebrow eyebrow--ink" data-reveal="blur"><svg class="dots" aria-hidden="true"><use href="#i-dots"/></svg><span>Resource Library</span></p>
+      <h2 class="h2 resources__title" id="resources-title" data-reveal="blur">What is happening in the network.</h2>
+      <a class="btn btn--white resources__all" href="#" data-reveal="blur"><span>See all resources</span><svg class="i-arrow-light" aria-hidden="true"><use href="#i-arrow-light"/></svg></a>
+
+      <div class="resources__cards">
+        <article class="rcard" data-reveal="blur" data-card-link>
+          <figure class="rcard__media"><img class="rcard__img rcard__img--1" src="assets/img/res-patient-safety.webp" width="1200" height="801" alt=""></figure>
+          <p class="rcard__tags"><span class="chip">News</span><span class="rcard__dot" aria-hidden="true"></span><span class="rcard__cat">Mental Health</span></p>
+          <h3 class="rcard__title"><a href="#">Patient safety in healthcare: how clinics support safer care</a></h3>
+        </article>
+        <article class="rcard" data-reveal="blur" data-card-link>
+          <figure class="rcard__media"><img class="rcard__img rcard__img--2" src="assets/img/res-data-report.webp" width="1200" height="674" alt=""></figure>
+          <p class="rcard__tags"><span class="chip">News</span><span class="rcard__dot" aria-hidden="true"></span><span class="rcard__cat">Nutrition</span></p>
+          <h3 class="rcard__title"><a href="#">Patient safety in healthcare: how clinics support safer care</a></h3>
+        </article>
+        <article class="rcard" data-reveal="blur" data-card-link>
+          <figure class="rcard__media"><img class="rcard__img rcard__img--3" src="assets/img/res-skin-health.webp" width="1200" height="793" alt=""></figure>
+          <p class="rcard__tags"><span class="chip chip--blog">Blog</span><span class="rcard__dot" aria-hidden="true"></span><span class="rcard__cat">Funding</span></p>
+          <h3 class="rcard__title"><a href="#">Patient safety in healthcare: how clinics support safer care</a></h3>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- partners: 3751 → 4071 -->
+  <section class="partners" aria-labelledby="partners-title">
+    <div class="wrap">
+      <h2 class="h2 partners__title" id="partners-title" data-reveal="blur">NAFC Partners</h2>
+      <a class="partners__all" href="#" data-reveal="blur"><span>See All Partners</span><svg class="i-arrow-light" aria-hidden="true"><use href="#i-arrow-light"/></svg></a>
+      <ul class="logos" data-marquee>
+        <li class="logo-1"><img src="assets/logos/partner-doximity.webp" alt="doximity"></li>
+        <li class="logo-2"><img src="assets/logos/partner-doxyme.webp" alt="doxy.me"></li>
+        <li class="logo-3"><img src="assets/logos/partner-aafp.png" alt="AAFP Foundation"></li>
+        <li class="logo-4"><img src="assets/logos/partner-afaxys.png" alt="afaxys"></li>
+        <li class="logo-5"><img src="assets/logos/partner-americares.png" alt="americares"></li>
+        <li class="logo-6"><img src="assets/logos/partner-athenahealth.png" alt="athenahealth"></li>
+        <li class="logo-7"><img src="assets/logos/partner-ams.png" alt="AMS Atlantic Medical Solutions"></li>
+        <li class="logo-8"><img src="assets/logos/partner-bd.webp" alt="BD"></li>
+      </ul>
+      <span class="logos__fade logos__fade--left" aria-hidden="true"></span>
+      <span class="logos__fade logos__fade--right" aria-hidden="true"></span>
+    </div>
+  </section>
+
+</main>
+
+<!-- footer: 4071 → 4528 -->
+<footer class="site-footer">
+  <div class="wrap">
+    <img data-reveal="blur" class="site-footer__logo" src="assets/logos/nafc-logo.png" width="204" height="103" alt="NAFC, The National Association of Free &amp; Charitable Clinics">
+
+    <nav class="fcol fcol--links" aria-labelledby="f-links" data-reveal="blur">
+      <h2 class="fcol__title" id="f-links">Quick Links</h2>
+      <ul>
+        <li><a href="#">Our Impact</a></li>
+        <li><a href="#">Get Involved</a></li>
+        <li><a href="#">Resources</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Member Area</a></li>
+      </ul>
+    </nav>
+
+    <div class="fcol fcol--contact" data-reveal="blur">
+      <h2 class="fcol__title">Contact Us</h2>
+      <dl>
+        <div class="contact contact--email"><span class="contact__icon"><svg class="i-envelope"><use href="#i-envelope"/></svg></span><dt>Email:</dt><dd><a href="mailto:info@nafcclinics.org">info@nafcclinics.org</a></dd></div>
+        <div class="contact contact--phone"><span class="contact__icon"><svg class="i-phone"><use href="#i-phone"/></svg></span><dt>Phone</dt><dd><a href="tel:7036477427">(703) 647-7427</a></dd></div>
+        <div class="contact contact--address"><span class="contact__icon"><svg class="i-marker"><use href="#i-marker"/></svg></span><dt>Address</dt><dd>1800 Diagonal Road, Suite 600 Alexandria, VA 22314</dd></div>
+      </dl>
+    </div>
+
+    <div class="fcol fcol--social" data-reveal="blur">
+      <h2 class="fcol__title">Follow Us</h2>
+      <ul class="social">
+        <li class="social--fb"><a href="#" aria-label="Facebook"><svg class="i-facebook"><use href="#i-facebook"/></svg></a></li>
+        <li class="social--tt"><a href="#" aria-label="TikTok"><span class="social__mask"><svg class="i-tiktok"><use href="#i-tiktok"/></svg></span></a></li>
+        <li class="social--ig"><a href="#" aria-label="Instagram"><svg class="i-instagram"><use href="#i-instagram"/></svg></a></li>
+        <li class="social--fl"><a href="#" aria-label="Flickr"><svg class="i-flickr"><use href="#i-flickr"/></svg></a></li>
+        <li class="social--yt"><a href="#" aria-label="YouTube"><svg class="i-youtube"><use href="#i-youtube"/></svg></a></li>
+        <li class="social--li"><a href="#" aria-label="LinkedIn"><svg class="i-linkedin"><use href="#i-linkedin"/></svg></a></li>
+      </ul>
+      <p class="taxid">The NAFC Tax ID is <b>56-2273242</b></p>
+    </div>
+
+    <div class="site-footer__bottom" data-reveal="fade">
+      <p class="copyright">© The National Association of Free &amp; Charitable Clinics © 2026</p>
+      <p class="credits"><a class="credits__terms" href="#">Terms and Privacy Policy</a><span class="credits__dot" aria-hidden="true"></span><span class="credits__powered">POWERED BY <a href="https://one18media.com"><b>ONE18MEDIA</b></a></span></p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

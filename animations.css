@@ -1,0 +1,231 @@
+/* =========================================================
+   NAFC Home v7: project motion (xd-motion skill)
+   Loads after motion-core.css. Everything that moves is scoped to html.js,
+   so ?static and the Playwright XD diff get the plain build.
+   styles.css is never edited for motion.
+   Brief: subtle and mild. Character: 13px rounded buttons, 25px cards,
+   Roboto + Open Sans, navy + green, flat light page, thin light arrows.
+   Variants: arrow push + tint buttons, blur rise text, fade + settle photos,
+   slow photo zoom, color + arrow nudge links, logo marquee, counters.
+   ========================================================= */
+
+.js {
+  --load-base: 150ms;
+  --ease-ui: cubic-bezier(0.23, 1, 0.32, 1);   /* strong ease-out for UI feedback (review: built-in easings are too weak) */
+  --tint-navy: #292C8E;   /* navy one step lighter (navy mixed 10% toward white) */
+  --tint-white: #F3F3F9;  /* white with a 5% navy tint */
+}
+
+/* ---------- softer core defaults: shorter rise, lighter blur, 60ms stagger ---------- */
+.js [data-load] { translate: 0 16px; filter: blur(4px); animation: m-rise-soft .8s var(--ease-out) forwards; animation-delay: calc(var(--d, 0) * 60ms + var(--load-base)); }
+@keyframes m-rise-soft { to { opacity: 1; translate: 0 0; filter: none; } }   /* none, not blur(0): a held filter keeps a separate layer and shifts anti-aliasing */
+.js [data-reveal] { translate: 0 20px; transition: opacity .8s var(--ease-out) var(--rd, 0ms), translate .9s var(--ease-out) var(--rd, 0ms); }
+.js [data-reveal="blur"] { filter: blur(6px); transition: opacity .8s var(--ease-out) var(--rd, 0ms), translate .9s var(--ease-out) var(--rd, 0ms), filter .8s var(--ease-out) var(--rd, 0ms); }
+.js [data-reveal="fade"] { translate: 0 8px; }   /* never a pure fade: a small rise anchors it */
+.js [data-reveal].is-in { opacity: 1; translate: 0 0; }
+.js [data-reveal="blur"].is-in { filter: none; }
+
+/* ---------- header: always sticky, present from the first frame (no load animation) ---------- */
+/* the static header is in flow, so the page gets a spacer of the same height */
+.js body { padding-top: 122px; }
+.js .site-header { top: 0; left: 0; right: 0; animation: none; }
+.js [data-sticky-header].is-scrolled { box-shadow: 0 10px 30px -18px rgba(17, 21, 129, 0.28); }
+@keyframes m-fade { from { opacity: 0; } }
+@media (max-width: 1279.98px) { .js body { padding-top: 96px; } }
+@media (max-width: 767.98px) { .js body { padding-top: 72px; } }
+
+/* nav: labels dim a touch */
+.js .main-nav > ul > li > a, .js .mnav__label { transition: opacity .2s var(--ease); }
+@media (hover: hover) and (pointer: fine) {   /* touch keeps a sticky :hover after a tap */
+  .js .main-nav > ul > li > a:hover, .js .mnav__btn:hover .mnav__label { opacity: .72; }
+}
+
+/* nav hover: one soft pill slides between the links (main.js places it with --l / --r).
+   It moves with clip-path, not width, so nothing is laid out again. Desktop + fine pointer only. */
+@media (min-width: 1280px) and (hover: hover) and (pointer: fine) {
+  .js .main-nav { isolation: isolate; }
+  .js .nav-pill {
+    position: absolute;
+    z-index: -1;
+    left: -14px;
+    right: -14px;
+    top: -8px;
+    bottom: -8px;
+    border-radius: 10px;
+    background: rgba(17, 21, 129, 0.06);
+    pointer-events: none;
+    opacity: 0;
+    clip-path: inset(0 var(--r, 100%) 0 var(--l, 0px) round 10px);
+    transition: clip-path .28s var(--ease-ui), opacity .2s var(--ease);
+  }
+  .js .nav-pill.is-on { opacity: 1; }
+  .js .nav-pill.is-jump { transition: opacity .2s var(--ease); }   /* first show: appear in place, no slide in from the edge */
+  /* the pill replaces the dim on hover */
+  .js .main-nav > ul > li > a:hover, .js .mnav__btn:hover .mnav__label { opacity: 1; }
+}
+
+/* ---------- hero photo: fades in and settles on load ---------- */
+.js .m-photo-load { animation: m-fade 1s var(--ease) calc(var(--load-base) + 120ms) backwards; }
+/* backwards, not both: a held animation keeps the photo on its own layer and it resamples */
+.js .m-photo-load img { animation: m-settle 1.4s var(--ease-out) calc(var(--load-base) + 120ms) backwards; }
+@keyframes m-settle { from { scale: 1.06; } }
+
+/* ---------- photos on scroll: fade + settle ---------- */
+.js [data-reveal="photo"] { translate: 0 0; transition: opacity 1s var(--ease) var(--rd, 0ms); }
+.js [data-reveal="photo"] img { scale: 1.06; transition: scale 1.4s var(--ease-out) var(--rd, 0ms); }
+.js [data-reveal="photo"].is-in img { scale: 1; }
+/* resource cards: the photo settles with the card's blur rise */
+.js .rcard[data-reveal] .rcard__img { scale: 1.06; transition: scale 1.4s var(--ease-out) var(--rd, 0ms); }
+.js .rcard[data-reveal].is-in .rcard__img { scale: 1; }
+
+/* ---------- buttons: tint + press (color works everywhere; movement is gated below) ---------- */
+.js :is(.btn, .hbtn, .finder__go) { transition: background-color .2s var(--ease), box-shadow .2s var(--ease), scale .16s var(--ease-ui); }
+.js :is(.btn, .hbtn, .finder__go):active { scale: .97; }
+.js :is(.btn--navy, .hbtn--find, .finder__go):hover { background-color: var(--tint-navy); }
+.js :is(.btn--white, .hbtn--donate):hover { background-color: var(--tint-white); }
+.js :is(.btn, .partners__all) .i-arrow-light { transition: translate .25s var(--ease-ui); }
+.js :is(.btn, .hbtn, .finder__go) :is(.i-heart, .i-pin, .i-search) { transition: scale .25s var(--ease-ui); }
+/* while a button is revealing it needs the reveal's transition list, or its hover list (above) wins and it pops in.
+   Core removes data-reveal once it lands, so the hover transitions take over again (gotchas §4). */
+.js :is(.btn, .hbtn, .finder__go)[data-reveal="blur"] {
+  transition: opacity .8s var(--ease-out) var(--rd, 0ms), translate .9s var(--ease-out) var(--rd, 0ms), filter .8s var(--ease-out) var(--rd, 0ms), scale .16s var(--ease-ui);
+}
+
+/* finder: the thumb slides to the chosen distance, the field shows an instant focus ring */
+.js .seg__thumb { transition: translate .22s var(--ease-ui); }
+.js .seg label span { transition: color .2s var(--ease); }   /* label spans only: the thumb is a span too */
+.js .finder__locate span { transition: color .2s var(--ease); }
+.js .finder__locate:hover span { color: var(--navy); }
+/* focus ring appears instantly: focus is keyboard-driven, so no transition */
+.js .finder__input:focus { outline: none; box-shadow: inset 0 0 0 1px var(--navy), 0 0 0 3px rgba(17, 21, 129, 0.12); }
+
+/* ---------- links: color (everywhere) + arrow nudge (gated below) ---------- */
+.js .alt a { transition: color .2s var(--ease); }
+.js .alt a:hover { color: var(--navy); }
+.js .alt .alt__volunteer:hover { color: var(--tint-navy) !important; }
+
+.js .icard__list a { transition: color .2s var(--ease); }
+.js .icard__list .i-arrow-ur { transition: translate .25s var(--ease-ui), color .2s var(--ease); }
+.js .icard__list li:hover a { color: var(--navy); }
+.js .icard__list li:hover .i-arrow-ur { color: var(--navy); }
+
+/* footer quick links: a small green dash + 4px step (movement gated below) */
+.js .fcol--links li a { position: relative; display: inline-block; transition: translate .25s var(--ease-ui); }
+.js .fcol--links li a::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  width: 6px;
+  height: 1.5px;
+  background: var(--green);
+  scale: 0 1;
+  transform-origin: 0 50%;
+  transition: scale .25s var(--ease-ui);
+}
+.js .contact dd a, .js .credits a { transition: color .2s var(--ease); }
+.js .contact dd a:hover { color: var(--navy); }
+.js .credits__terms:hover { color: var(--navy); }
+.js .social a { transition: background-color .2s var(--ease), color .2s var(--ease); }
+.js .social li:not(.social--fb) a:hover { background-color: var(--navy); color: var(--white); }
+.js .social--fb a:hover { background-color: var(--tint-navy); }
+
+/* resource cards: the whole card clicks through (data-card-link), title shifts one step */
+.js .rcard__title a { transition: color .2s var(--ease); }
+.js .rcard:hover .rcard__title a { color: var(--tint-navy); }
+
+/* photo zoom: slow by design (decorative), but shorter than before so leaving doesn't drag */
+.js .rcard__img, .js .donate__photo img { transition: scale .7s var(--ease-out); }
+
+/* ---------- header Donate Now: bloom from the heart + heartbeat ---------- */
+/* static look is the XD button; the fill is a pseudo-element behind the label, so geometry never changes */
+.js .hbtn--donate { overflow: hidden; isolation: isolate; }
+.js .hbtn--donate::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 22.93px;            /* heart center: 17 + 11.852 / 2 */
+  top: 23.5px;              /* 18.02 + 10.954 / 2 */
+  width: 260px;             /* reaches the far corner (143.85 x 45) from the heart */
+  height: 260px;
+  margin: -130px 0 0 -130px;
+  border-radius: 50%;
+  background: var(--navy);
+  opacity: 0;
+  scale: .05;
+  /* leaving snaps back (200ms); entering is the deliberate part (360ms) */
+  transition: scale .2s var(--ease-ui), opacity .2s var(--ease-ui);
+}
+@media (max-width: 1279.98px) {
+  /* relative for the bloom; clear the tablet right offset or it pushes the button off screen */
+  .js .hbtn--donate { position: relative; left: auto; right: auto; top: auto; }
+  /* drawer content: rows rise in one after another as it opens */
+  .js .site-header.is-open .main-nav > ul > li,
+  .js .site-header.is-open .header-ctas { animation: m-drawer-in .42s var(--ease-ui) backwards; }
+  .js .site-header.is-open .main-nav > ul > li:nth-child(1) { animation-delay: 90ms; }
+  .js .site-header.is-open .main-nav > ul > li:nth-child(2) { animation-delay: 120ms; }
+  .js .site-header.is-open .main-nav > ul > li:nth-child(3) { animation-delay: 150ms; }
+  .js .site-header.is-open .main-nav > ul > li:nth-child(4) { animation-delay: 180ms; }
+  .js .site-header.is-open .main-nav > ul > li:nth-child(5) { animation-delay: 210ms; }
+  .js .site-header.is-open .header-ctas { animation-delay: 240ms; }
+}
+@keyframes m-drawer-in { from { opacity: 0; translate: 16px 0; } }
+@keyframes m-beat-1 { 0% { scale: 1; } 35% { scale: 1.28; } 100% { scale: 1; } }
+@keyframes m-beat-2 { 0% { scale: 1; } 14% { scale: 1.26; } 28% { scale: 1; } 42% { scale: 1.18; } 64%, 100% { scale: 1; } }
+/* once, ~1.5s after load (main.js adds .is-beat, removes it on animationend) */
+.js .hbtn--donate.is-beat .i-heart { animation: m-beat-2 .9s var(--ease-ui); }
+
+/* ---------- hover movement: fine pointers only (touch fires sticky hovers on tap) ---------- */
+@media (hover: hover) and (pointer: fine) {
+  .js .mnav__btn .i-chev { transition: transform .22s var(--ease-ui), translate .2s var(--ease-ui); }
+  .js .mnav__btn:hover .i-chev { translate: 0 2px; }
+  .js :is(.btn, .partners__all):hover .i-arrow-light { translate: 4px 0; }
+  .js :is(.btn, .hbtn, .finder__go):hover :is(.i-heart, .i-pin, .i-search) { scale: 1.1; }
+  .js .icard__list li:hover .i-arrow-ur { translate: 2px -2px; }
+  .js .fcol--links li a:hover { translate: 4px 0; }
+  .js .fcol--links li a:hover::before { scale: 1 1; }
+  .js .rcard:hover .rcard__img, .js .donate__photo:hover img { scale: 1.04; }
+  .js .hbtn--donate:hover { background-color: var(--white); color: var(--white); transition: color .24s var(--ease) .06s, scale .16s var(--ease-ui); }
+  /* ease-out-cubic, not the strong UI curve: the spread from the heart has to be readable, not done in 80ms */
+  .js .hbtn--donate:hover::before { opacity: 1; scale: 1; transition: scale .42s cubic-bezier(0.33, 1, 0.68, 1), opacity .1s linear; }
+  .js .hbtn--donate:hover .i-heart { animation: m-beat-1 .45s var(--ease-ui) .08s; }
+}
+
+/* ---------- partner logo marquee (main.js builds .marquee > .marquee__track > 2 sets) ---------- */
+.js .marquee { overflow: hidden; }
+.js .marquee__track { display: flex; width: max-content; animation: m-marquee 60s linear infinite; }
+.js .marquee:hover .marquee__track { animation-play-state: paused; }
+@keyframes m-marquee { to { translate: -50% 0; } }
+/* per-logo margin-tops use .logos .logo-N: they must outrank the "margin: 0" reset below */
+/* one set = exactly 1316px (8px lead, XD gaps of 30/31px, 7px tail), so -50% loops without a jump */
+.js .marquee .logos { display: flex; flex: none; align-items: flex-start; flex-wrap: nowrap; justify-content: flex-start; gap: 0; width: 1316px; margin: 0; padding: 0 7px 0 8px; }
+.js .marquee .logos li { position: relative; left: auto; top: auto; flex: none; margin: 0; transform: none; }
+.js .marquee .logos li + li { margin-left: 30px; }
+.js .marquee .logos :is(.logo-3, .logo-5, .logo-7) { margin-left: 31px; }
+@media (min-width: 1440px) {
+  /* the first frame is the XD layout: same box as the static logo row */
+  .js .marquee { position: absolute; left: 0; top: 175px; width: 1316px; }
+  .js .marquee .logos .logo-1 { margin-top: 8px; }
+  .js .marquee .logos .logo-2 { margin-top: 10px; }
+  .js .marquee .logos .logo-3 { margin-top: 14px; }
+  .js .marquee .logos .logo-4 { margin-top: 7px; }
+  .js .marquee .logos .logo-5 { margin-top: 4px; }
+  .js .marquee .logos .logo-6 { margin-top: 33px; }
+  .js .marquee .logos .logo-8 { margin-top: 8px; }
+}
+@media (max-width: 1439.98px) {
+  .js .marquee { position: relative; margin-top: 25px; }
+  .js .marquee .logos { align-items: center; }
+  .js .marquee .logos li { height: auto; }
+}
+@media (max-width: 1279.98px) {
+  /* the white edge fades are hidden below 1280, so the marquee fades its own edges */
+  .js .marquee { -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+}
+
+/* ---------- reduced motion: everything visible, nothing drifts ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .js [data-load] { opacity: 1; translate: 0 0; filter: none; }
+  .js [data-reveal="photo"] img, .js .rcard[data-reveal] .rcard__img { scale: 1; }
+  .js .marquee__track { animation: none; }
+}
