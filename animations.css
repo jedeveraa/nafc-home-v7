@@ -126,9 +126,8 @@
 .js .contact dd a, .js .credits a { transition: color .2s var(--ease); }
 .js .contact dd a:hover { color: var(--navy); }
 .js .credits__terms:hover { color: var(--navy); }
-.js .social a { transition: background-color .2s var(--ease), color .2s var(--ease); }
-.js .social li:not(.social--fb) a:hover { background-color: var(--navy); color: var(--white); }
-.js .social--fb a:hover { background-color: var(--tint-navy); }
+.js .social a { transition: color .2s var(--ease), opacity .2s var(--ease), translate .25s var(--ease-ui); }
+.js .social a:hover { color: var(--navy); opacity: 1; translate: 0 -2px; }
 
 /* resource cards: the whole card clicks through (data-card-link), title shifts one step */
 .js .rcard__title a { transition: color .2s var(--ease); }

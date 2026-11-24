@@ -229,30 +229,42 @@ button, input { font: inherit; color: inherit; margin: 0; }
 .finder__locate .i-crosshairs { flex: none; width: 14.672px; height: 14.672px; }
 .finder__locate span { color: var(--ink); }
 .finder__within { float: left; flex: none; padding: 0; margin-top: 1.04px; }   /* XD baseline 676.5 */
+/* v7 rev (2026-11-24): XD now has the control. Track 272x44 #E6EBF3 r13 at 168,649; thumb 57x33 r8 at 173,654.
+   XD's labels are hand-placed (centers 201 / 268 / 331 / 393), so the columns split at the midpoints
+   and each label is nudged onto its XD center; the thumb centers under the chosen label. */
 .seg {
   --n: 4;
   --i: 0;
+  --x: 0px;
   position: relative;
   display: grid;
-  grid-template-columns: repeat(var(--n), 64px);
-  padding: 4px;
-  border-radius: 12px;
-  background: #E9EEF5;
+  grid-template-columns: 61.5px 65px 62.5px 73px;
+  margin: -2px 0;   /* the 44px track keeps the 40px row height, as in XD */
+  padding: 5px;
+  border-radius: 13px;
+  background: #E6EBF3;
 }
 .seg__thumb {
   position: absolute;
-  top: 4px;
-  bottom: 4px;
-  left: 4px;
-  width: calc((100% - 8px) / var(--n));
-  border-radius: 9px;
+  top: 5px;
+  left: 5px;
+  width: 57px;
+  height: 33px;
+  border-radius: 8px;
   background: var(--white);
-  box-shadow: 0 1px 2px rgba(17, 21, 129, 0.10), 0 3px 8px -2px rgba(17, 21, 129, 0.12);
-  translate: calc(var(--i) * 100%) 0;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.0706);
+  translate: var(--x) 0;
 }
-.seg label { position: relative; display: grid; place-items: center; height: 32px; cursor: pointer; }
+.seg:has(label:nth-of-type(2) input:checked) { --x: 66.5px; }
+.seg:has(label:nth-of-type(3) input:checked) { --x: 129.5px; }
+.seg:has(label:nth-of-type(4) input:checked) { --x: 191.5px; }
+.seg label { position: relative; display: grid; place-items: center; height: 34px; cursor: pointer; }
 .seg input { position: absolute; opacity: 0; width: 0; height: 0; }
-.seg label span { font: 700 13px/15px var(--f-head); color: rgba(27, 45, 73, 0.62); white-space: nowrap; }
+.seg label span { margin-top: 1px; font: 700 13px/15px var(--f-head); color: #767F90; white-space: nowrap; }
+.seg label:nth-of-type(1) span { translate: -2.75px 0; }
+.seg label:nth-of-type(2) span { translate: 1px 0; }
+.seg label:nth-of-type(3) span { translate: 0.25px 0; }
+.seg label:nth-of-type(4) span { translate: -5.5px 0; }
 .seg label:hover span { color: var(--ink); }
 .seg input:checked + span { color: var(--navy); }
 .seg:has(input:focus-visible) { box-shadow: 0 0 0 3px rgba(17, 21, 129, 0.18); }
@@ -273,12 +285,14 @@ button, input { font: inherit; color: inherit; margin: 0; }
 
 /* ---------- symposium band (877 → 1031) ---------- */
 
-.symposium { position: relative; height: 154px; overflow: hidden; color: var(--white); }
+/* v7 rev (2026-11-24): solid navy panel 0 → 617, clear photo 617 → 1440 (photo starts 555px into the container) */
+.symposium { --sym-x: calc(50% - var(--content) / 2 + 555px); position: relative; height: 154px; overflow: hidden; color: var(--white); }
 /* cover 1448x1086 at 1440 = 1440 x 1080, centered -463, XD offset +.0993 × 1080 */
-.symposium__bg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% -355.73px; }
-.symposium__shade { position: absolute; inset: 0; background: rgba(17, 21, 129, 0.818); }
+/* cover 823x154 → image 823x617.25, centered then shifted down 9.93% of its height: y −170.32 (= 36.767%) */
+.symposium__bg { position: absolute; left: var(--sym-x); top: 0; width: calc(100% - var(--sym-x)); height: 100%; object-fit: cover; object-position: 50% 36.767%; }
+.symposium__shade { position: absolute; left: 0; top: 0; bottom: 0; width: var(--sym-x); background: var(--navy); }
 .symposium .wrap { height: 154px; }
-.symposium__title { width: 610px; padding-top: 26px; font: 700 29px/60px var(--f-head); letter-spacing: var(--ls-tight); font-kerning: none; }
+.symposium__title { width: 509px; padding-top: 27px; font: 700 29px/60px var(--f-head); letter-spacing: var(--ls-tight); font-kerning: none; }
 .symposium__meta { display: flex; align-items: flex-start; margin-top: 7px; font: 700 14px/16px var(--f-head); white-space: nowrap; }
 .symposium__date { width: 109px; }
 .symposium__dot { width: 3px; height: 3px; margin: 6px 8px 0; border-radius: 50%; background: var(--white); }
@@ -288,7 +302,7 @@ button, input { font: inherit; color: inherit; margin: 0; }
 /* ---------- our impact (1031 → 1699) ---------- */
 
 .impact { height: 668px; }
-.impact__eyebrow { padding-top: 67.5px; margin-left: -0.08px; }
+.impact__eyebrow { padding-top: 57.5px; margin-left: -0.08px; }
 .impact__title { width: 1313px; margin: 26px 0 0 2.92px; }
 .impact__cards { display: grid; grid-template-columns: repeat(3, 428px); gap: 16px; margin-top: 38.5px; }
 .icard {
@@ -298,7 +312,7 @@ button, input { font: inherit; color: inherit; margin: 0; }
   background: var(--panel);
   box-shadow: inset 0 0 0 1px rgba(17, 21, 129, 0.063);
 }
-.icard__head { position: absolute; left: 0; top: 0; width: 428px; height: 154px; border-radius: 26px 26px 0 0; background: var(--navy); color: var(--white); }
+.icard__head { position: absolute; left: 0; top: 0; width: 428px; height: 154px; border-radius: 26px 26px 0 0; background: #9E9FCB; color: var(--ink); }
 .icard__title { position: absolute; left: 19px; top: 33px; width: 392px; font: 700 25px/29px var(--f-head); }
 .icard--3 .icard__title { top: 35px; }
 .icard__text { position: absolute; left: 18px; top: 74px; width: 393px; font: 400 16px/22px var(--f-body); }
@@ -390,10 +404,10 @@ button, input { font: inherit; color: inherit; margin: 0; }
 .logos__fade--left { left: 0; background: linear-gradient(to left, rgba(255, 255, 255, 0), #fff); }
 .logos__fade--right { left: 1221px; background: linear-gradient(to right, rgba(255, 255, 255, 0), #fff); }
 
-/* ---------- footer (4071 → 4528) ---------- */
+/* ---------- footer (4072 → 4534; 1px white gap above it in XD) ---------- */
 
-.site-footer { height: 457px; background: var(--paper); }
-.site-footer .wrap { height: 457px; }
+.site-footer { height: 462px; margin-top: 1px; background: var(--paper); }
+.site-footer .wrap { height: 462px; }
 .site-footer__logo { position: absolute; left: 2px; top: 40px; width: 204px; height: 103px; }
 .fcol { position: absolute; top: 45px; }
 .fcol__title { font: 700 16px/19px var(--f-head); letter-spacing: var(--ls-tag); text-transform: uppercase; color: var(--green); white-space: nowrap; }
@@ -416,30 +430,29 @@ button, input { font: inherit; color: inherit; margin: 0; }
 .contact dd { margin-top: 10px; font: 400 17px/23px var(--f-body); color: #000; }
 .contact--address dd { width: 242px; }
 
-.fcol--social { left: 995px; }
-.social { position: absolute; left: 4px; top: 46px; }
+.fcol--social { left: 999px; }
+/* v7 rev: plain icons, no circles. Facebook navy; the rest ink at 69.17% */
+.social { position: absolute; left: 0; top: 57px; }
 .social li { position: absolute; top: 0; }
-.social a { position: absolute; left: 0; top: 0; width: 39px; height: 39px; border-radius: 50%; background: var(--mist); color: var(--navy); }
+.social a { position: absolute; left: 0; top: 0; display: block; width: 18px; height: 19px; color: var(--ink); opacity: 0.6917; }
 .social svg { position: absolute; }
 .social--fb { left: 0; }
-.social--fb a { background: var(--navy); color: var(--white); }
-.social--fb svg { left: 14.77px; top: 11.4px; width: 8.677px; height: 16.201px; }
-.social--tt { left: 55px; }
-.social__mask { position: absolute; left: 11px; top: 11px; width: 18px; height: 18px; overflow: hidden; }
-.social--tt svg { left: 0.52px; top: -0.43px; width: 16.63px; height: 18.375px; }
-.social--ig { left: 112px; }
-.social--ig a { width: 38px; }
-.social--ig svg { left: 10.72px; top: 11.33px; width: 16.848px; height: 16.848px; }
-.social--fl { left: 167px; }
-.social--fl a { width: 38px; }
-.social--fl svg { left: 10.92px; top: 16.05px; width: 16.334px; height: 7.424px; }
-.social--yt { left: 223px; }
-.social--yt svg { left: 11.25px; top: 13.98px; width: 16.417px; height: 11.566px; }
-.social--li { left: 278px; }
-.social--li svg { left: 12.08px; top: 11.88px; width: 15.748px; height: 15.748px; }
+.social--fb a { color: var(--navy); opacity: 1; }
+.social--fb svg { left: 0; top: 0.4px; width: 8.677px; height: 16.201px; }
+.social--tt { left: 28.68px; }
+.social__mask { position: absolute; left: 0; top: 0; width: 18px; height: 18px; overflow: hidden; }
+.social--tt svg { left: 0.51px; top: -0.43px; width: 16.63px; height: 18.375px; }
+.social--ig { left: 66.68px; }
+.social--ig svg { left: 0; top: 0.33px; width: 16.848px; height: 16.848px; }
+.social--fl { left: 103.53px; }
+.social--fl svg { left: 0; top: 5.05px; width: 16.334px; height: 7.424px; }
+.social--yt { left: 139.86px; }
+.social--yt svg { left: 0; top: 2.98px; width: 16.417px; height: 11.566px; }
+.social--li { left: 176.28px; }
+.social--li svg { left: 0; top: 0.88px; width: 15.748px; height: 15.748px; }
 .taxid {
   position: absolute;
-  left: 4px;
+  left: 0;
   top: 119px;
   width: 292px;
   height: 40px;
